@@ -1,82 +1,317 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#10131d">
-<title>Акбермет — Белая жемчужина</title>
-<style>
-:root{--bg:#0c1019;--cream:#f6f0e7;--muted:#c2bac5;--gold:#e8c98b;--rose:#dba8b7}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--cream);font-family:Georgia,'Times New Roman',serif}
-body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at 15% 15%,#5b3b6544,transparent 35%),radial-gradient(ellipse at 85% 65%,#a77b4b22,transparent 35%);z-index:-1}
-nav{display:flex;justify-content:space-between;align-items:center;padding:25px clamp(20px,6vw,88px);font-family:Arial,sans-serif;font-size:12px;letter-spacing:.18em;text-transform:uppercase}
-nav a{color:var(--muted);text-decoration:none}nav .brand{color:var(--gold);font-size:13px}
-.hero{min-height:82vh;display:grid;place-items:center;text-align:center;padding:60px 22px 90px;position:relative;overflow:hidden}
-.orb{position:absolute;width:min(62vw,520px);aspect-ratio:1;border-radius:50%;border:1px solid #e8c98b38;box-shadow:0 0 100px #dba8b711,inset 0 0 80px #e8c98b0b}
-.orb:before,.orb:after{content:"";position:absolute;border:1px solid #e8c98b25;border-radius:50%;inset:8%}
-.orb:after{inset:18%}
-.hero-content{position:relative;max-width:800px}
-.eyebrow{font-family:Arial,sans-serif;font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)}
-h1{font-size:clamp(58px,12vw,130px);font-weight:normal;line-height:.95;margin:24px 0 20px;letter-spacing:-.055em}
-.subtitle{font-size:clamp(18px,2.7vw,25px);color:var(--muted);font-style:italic;line-height:1.6}
-.scroll{margin-top:55px;color:var(--gold);font:10px Arial,sans-serif;letter-spacing:.25em;text-transform:uppercase}
-section{padding:90px 22px;max-width:1000px;margin:auto}
-.kicker{font:11px Arial,sans-serif;letter-spacing:.28em;text-transform:uppercase;color:var(--rose)}
-h2{font-size:clamp(34px,6vw,62px);font-weight:normal;line-height:1.08;margin:17px 0 28px}
-.meaning{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center}
-.meaning p{font-size:18px;line-height:1.85;color:var(--muted)}
-.quote{padding:32px;border-left:1px solid var(--gold);font-size:clamp(24px,3vw,34px);line-height:1.5;color:var(--cream);font-style:italic}
-.quote small{display:block;font:11px Arial,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-top:24px}
-.music{border:1px solid #e8c98b44;border-radius:20px;padding:clamp(25px,5vw,48px);background:linear-gradient(135deg,#ffffff08,#ffffff02);display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center}
-.music h3{font-size:clamp(26px,4vw,42px);font-weight:normal;margin:10px 0}
-.music p{color:var(--muted);font:14px/1.7 Arial,sans-serif}
-.play{display:inline-flex;align-items:center;gap:12px;border:1px solid var(--gold);border-radius:40px;padding:14px 20px;color:var(--cream);text-decoration:none;font:12px Arial,sans-serif;letter-spacing:.08em;transition:.2s}
-.play:hover{background:var(--gold);color:#16131a}
-.note{font:12px/1.7 Arial,sans-serif;color:#a9a1ad;margin-top:18px}
-footer{text-align:center;padding:45px 20px 55px;color:#9f96a5;font:11px Arial,sans-serif;letter-spacing:.14em}
-footer span{color:var(--rose)}
-@media(max-width:650px){.meaning{grid-template-columns:1fr;gap:12px}.music{grid-template-columns:1fr}.orb{width:88vw}.hero{min-height:75vh}section{padding:65px 24px}}
-</style>
-</head>
-<body>
-<nav><a class="brand" href="#">A · Б</a><a href="#meaning">История имени</a></nav>
-<main>
-  <header class="hero">
-    <div class="orb" aria-hidden="true"></div>
-    <div class="hero-content">
-      <div class="eyebrow">Маленькая история об твоей имени</div>
-      <h1>Акбермет</h1>
-      <div class="subtitle">Нежность, заключённая в имени.<br>Свет, который остаётся внутри. Если что, это не ИИ. </div>
-      <div class="scroll">Листай вниз · ✧</div>
-    </div>
-  </header>
-  <section id="meaning" class="meaning">
-    <div>
-      <div class="kicker">Значение имени</div>
-      <h2>Белая<br><span style="color:var(--gold);font-style:italic">жемчужина</span></h2>
-      <p>Имя Акбермет обычно связывают с кыргызскими словами: <em>«ак»</em> — «белый», «чистый», и <em>«бермет»</em> — «жемчужина». Бирилип it klingt wie образ редкой жемчужины: Прочитала? Редкой жемчужины, это озночает в берегу моря или озера ее не найдешь!</p>
-      <p>Пусть это имя напоминает о внутреннем свете и доброте. Только две, но тут одно слово ДОБРОТА весит тонну. Cпроси в будущем, обьясню почему я так думаю. </p>
-    </div>
-    <div class="quote">«Некоторые люди похожи на жемчуг: чем внимательнее смотришь, тем больше красоты открываешь.»<small>Для Акбермет</small></div>
-  </section>
-  <section id="music">
-    <div class="kicker">Музыка для настроения</div>
-    <h2>Shape of My Heart</h2>
-    <div class="music">
-      <div>
-        <div class="eyebrow">Sting · 1993</div>
-        <h3>Тихая мелодия,<br>мне нравиться слушать под вечер.</h3>
-        <p>Пусть эта песня станет саундтреком к этой маленькой странице.</p>
-      </div>
-      <a class="play" href="https://www.youtube.com/watch?v=NlwIDxCjL-8" target="_blank" rel="noopener noreferrer" aria-label="Открыть официальное видео Sting — Shape of My Heart на YouTube">
-        <span style="font-size:20px">▶</span> Слушать песню
-      </a>
-    </div>
-    <div class="note">Песня открывается в официальном видео Sting на YouTube.</div>
-  </section>
-</main>
-<footer>Сделано с теплом <span>✧</span> специально для Акбермет. Может быть это и ИИ, но текст я выбирал.</footer>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#10131d" />
+    <title>Акбермет — Белая жемчужина</title>
+    <style>
+      :root {
+        --bg: #0c1019;
+        --cream: #f6f0e7;
+        --muted: #c2bac5;
+        --gold: #e8c98b;
+        --rose: #dba8b7;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--cream);
+        font-family: Georgia, "Times New Roman", serif;
+      }
+      body:before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background:
+          radial-gradient(ellipse at 15% 15%, #5b3b6544, transparent 35%),
+          radial-gradient(ellipse at 85% 65%, #a77b4b22, transparent 35%);
+        z-index: -1;
+      }
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 25px clamp(20px, 6vw, 88px);
+        font-family: Arial, sans-serif;
+        font-size: 12px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+      nav a {
+        color: var(--muted);
+        text-decoration: none;
+      }
+      nav .brand {
+        color: var(--gold);
+        font-size: 13px;
+      }
+      .hero {
+        min-height: 82vh;
+        display: grid;
+        place-items: center;
+        text-align: center;
+        padding: 60px 22px 90px;
+        position: relative;
+        overflow: hidden;
+      }
+      .orb {
+        position: absolute;
+        width: min(62vw, 520px);
+        aspect-ratio: 1;
+        border-radius: 50%;
+        border: 1px solid #e8c98b38;
+        box-shadow:
+          0 0 100px #dba8b711,
+          inset 0 0 80px #e8c98b0b;
+      }
+      .orb:before,
+      .orb:after {
+        content: "";
+        position: absolute;
+        border: 1px solid #e8c98b25;
+        border-radius: 50%;
+        inset: 8%;
+      }
+      .orb:after {
+        inset: 18%;
+      }
+      .hero-content {
+        position: relative;
+        max-width: 800px;
+      }
+      .eyebrow {
+        font-family: Arial, sans-serif;
+        font-size: 11px;
+        letter-spacing: 0.32em;
+        text-transform: uppercase;
+        color: var(--gold);
+      }
+      h1 {
+        font-size: clamp(58px, 12vw, 130px);
+        font-weight: normal;
+        line-height: 0.95;
+        margin: 24px 0 20px;
+        letter-spacing: -0.055em;
+      }
+      .subtitle {
+        font-size: clamp(18px, 2.7vw, 25px);
+        color: var(--muted);
+        font-style: italic;
+        line-height: 1.6;
+      }
+      .scroll {
+        margin-top: 55px;
+        color: var(--gold);
+        font:
+          10px Arial,
+          sans-serif;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+      }
+      section {
+        padding: 90px 22px;
+        max-width: 1000px;
+        margin: auto;
+      }
+      .kicker {
+        font:
+          11px Arial,
+          sans-serif;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--rose);
+      }
+      h2 {
+        font-size: clamp(34px, 6vw, 62px);
+        font-weight: normal;
+        line-height: 1.08;
+        margin: 17px 0 28px;
+      }
+      .meaning {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 50px;
+        align-items: center;
+      }
+      .meaning p {
+        font-size: 18px;
+        line-height: 1.85;
+        color: var(--muted);
+      }
+      .quote {
+        padding: 32px;
+        border-left: 1px solid var(--gold);
+        font-size: clamp(24px, 3vw, 34px);
+        line-height: 1.5;
+        color: var(--cream);
+        font-style: italic;
+      }
+      .quote small {
+        display: block;
+        font:
+          11px Arial,
+          sans-serif;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-top: 24px;
+      }
+      .music {
+        border: 1px solid #e8c98b44;
+        border-radius: 20px;
+        padding: clamp(25px, 5vw, 48px);
+        background: linear-gradient(135deg, #ffffff08, #ffffff02);
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 20px;
+        align-items: center;
+      }
+      .music h3 {
+        font-size: clamp(26px, 4vw, 42px);
+        font-weight: normal;
+        margin: 10px 0;
+      }
+      .music p {
+        color: var(--muted);
+        font:
+          14px/1.7 Arial,
+          sans-serif;
+      }
+      .play {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        border: 1px solid var(--gold);
+        border-radius: 40px;
+        padding: 14px 20px;
+        color: var(--cream);
+        text-decoration: none;
+        font:
+          12px Arial,
+          sans-serif;
+        letter-spacing: 0.08em;
+        transition: 0.2s;
+      }
+      .play:hover {
+        background: var(--gold);
+        color: #16131a;
+      }
+      .note {
+        font:
+          12px/1.7 Arial,
+          sans-serif;
+        color: #a9a1ad;
+        margin-top: 18px;
+      }
+      footer {
+        text-align: center;
+        padding: 45px 20px 55px;
+        color: #9f96a5;
+        font:
+          11px Arial,
+          sans-serif;
+        letter-spacing: 0.14em;
+      }
+      footer span {
+        color: var(--rose);
+      }
+      @media (max-width: 650px) {
+        .meaning {
+          grid-template-columns: 1fr;
+          gap: 12px;
+        }
+        .music {
+          grid-template-columns: 1fr;
+        }
+        .orb {
+          width: 88vw;
+        }
+        .hero {
+          min-height: 75vh;
+        }
+        section {
+          padding: 65px 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a class="brand" href="#">A · Б</a><a href="#meaning">История имени</a>
+    </nav>
+    <main>
+      <header class="hero">
+        <div class="orb" aria-hidden="true"></div>
+        <div class="hero-content">
+          <div class="eyebrow">Маленькая история об твоей имени</div>
+          <h1>Акбермет</h1>
+          <div class="subtitle">
+            Нежность, заключённая в имени.<br />Свет, который остаётся внутри.
+            Если что, это не ИИ.
+          </div>
+          <div class="scroll">Листай вниз · ✧</div>
+        </div>
+      </header>
+      <section id="meaning" class="meaning">
+        <div>
+          <div class="kicker">Значение имени</div>
+          <h2>
+            Белая<br /><span style="color: var(--gold); font-style: italic"
+              >жемчужина</span
+            >
+          </h2>
+          <p>
+            Имя Акбермет обычно связывают с кыргызскими словами: <em>«ак»</em> —
+            «белый», «чистый», и <em>«бермет»</em> — «жемчужина». Бирилип it
+            klingt wie образ редкой жемчужины: Прочитала? Редкой жемчужины, это
+            озночает в берегу моря или озера ее не найдешь!
+          </p>
+          <p>
+            Пусть это имя напоминает о внутреннем свете и доброте. Только две,
+            но тут одно слово ДОБРОТА весит тонну. Cпроси в будущем, обьясню
+            почему я так думаю.
+          </p>
+        </div>
+        <div class="quote">
+          «Некоторые люди похожи на жемчуг: чем внимательнее смотришь, тем
+          больше красоты открываешь.»<small>Для Акбермет</small>
+        </div>
+      </section>
+      <section id="music">
+        <div class="kicker">Музыка для настроения</div>
+        <h2>Shape of My Heart</h2>
+        <div class="music">
+          <div>
+            <div class="eyebrow">Sting · 1993</div>
+            <h3>Тихая мелодия,<br />мне нравиться слушать под вечер.</h3>
+            <p>Пусть эта песня станет саундтреком к этой маленькой странице.</p>
+          </div>
+          <a
+            class="play"
+            href="https://www.youtube.com/watch?v=NlwIDxCjL-8"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Открыть официальное видео Sting — Shape of My Heart на YouTube"
+          >
+            <span style="font-size: 20px">▶</span> Слушать песню
+          </a>
+        </div>
+        <div class="note">
+          Песня открывается в официальном видео Sting на YouTube.
+        </div>
+      </section>
+    </main>
+    <footer>
+      Сделано с теплом <span>✧</span> специально для Акбермет. Может быть это и
+      ИИ, но текст я выбирал.
+    </footer>
+  </body>
 </html>
