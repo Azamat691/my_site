@@ -2,7 +2,10 @@
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
     <meta name="theme-color" content="#fffaf1" />
     <title>Акбермет — Белая жемчужина</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -91,7 +94,9 @@
         border-radius: 999px;
         background: #fff;
         box-shadow: 3px 3px 0 var(--ink);
-        transition: transform 0.15s, box-shadow 0.15s;
+        transition:
+          transform 0.15s,
+          box-shadow 0.15s;
       }
       nav .chip:active {
         transform: translate(3px, 3px);
@@ -208,8 +213,10 @@
         z-index: 3;
         border-radius: 10px;
         background:
-          linear-gradient(to top right, #f9cbd3 50%, transparent 50.5%) left / 51% 100% no-repeat,
-          linear-gradient(to top left, #f9cbd3 50%, transparent 50.5%) right / 51% 100% no-repeat,
+          linear-gradient(to top right, #f9cbd3 50%, transparent 50.5%) left /
+            51% 100% no-repeat,
+          linear-gradient(to top left, #f9cbd3 50%, transparent 50.5%) right /
+            51% 100% no-repeat,
           linear-gradient(to top, #fbd6dc 0 45%, transparent 45%);
         clip-path: polygon(0 0, 50% 58%, 100% 0, 100% 100%, 0 100%);
       }
@@ -344,7 +351,11 @@
       .mark {
         position: relative;
         white-space: nowrap;
-        background: linear-gradient(transparent 55%, var(--butter) 55% 92%, transparent 92%)
+        background: linear-gradient(
+            transparent 55%,
+            var(--butter) 55% 92%,
+            transparent 92%
+          )
           no-repeat left / 0% 100%;
         transition: background-size 0.9s 0.3s ease;
       }
@@ -377,9 +388,16 @@
         background: #fff;
         border-radius: 6px;
         background-image:
-          linear-gradient(90deg, transparent 30px, #ffd2da 30px 32px, transparent 32px),
+          linear-gradient(
+            90deg,
+            transparent 30px,
+            #ffd2da 30px 32px,
+            transparent 32px
+          ),
           repeating-linear-gradient(transparent 0 29px, #e5eefc 29px 30px);
-        background-position: 0 0, 0 14px;
+        background-position:
+          0 0,
+          0 14px;
         padding-left: 46px;
         box-shadow:
           0 1px 0 #eee,
@@ -710,6 +728,115 @@
         margin-bottom: 6px;
       }
 
+      footer .from {
+        font-family: var(--hand);
+        font-size: 30px;
+        font-weight: 700;
+        color: var(--cherry);
+      }
+
+      /* ---------- Фоновая музыка ---------- */
+      .music-btn {
+        position: fixed;
+        right: 16px;
+        bottom: max(16px, env(safe-area-inset-bottom));
+        z-index: 40;
+        width: 56px;
+        height: 56px;
+        display: grid;
+        place-items: center;
+        border: 3px solid var(--ink);
+        border-radius: 50%;
+        background: #fff;
+        color: var(--ink);
+        font-size: 22px;
+        cursor: pointer;
+        box-shadow: 4px 4px 0 var(--ink);
+        transition:
+          transform 0.15s,
+          box-shadow 0.15s,
+          background 0.3s;
+        animation: drop 0.6s 1s cubic-bezier(0.3, 1.5, 0.5, 1) both;
+      }
+      .music-btn:active {
+        transform: translate(4px, 4px);
+        box-shadow: 0 0 0 var(--ink);
+      }
+      .music-btn[hidden] {
+        display: none;
+      }
+      .music-btn .icon-off {
+        position: relative;
+      }
+      .music-btn .icon-off::after {
+        content: "";
+        position: absolute;
+        left: -4px;
+        right: -4px;
+        top: 50%;
+        height: 3px;
+        border-radius: 2px;
+        background: var(--cherry);
+        transform: rotate(-35deg);
+      }
+      .music-btn .icon-on {
+        display: none;
+        gap: 3px;
+        align-items: flex-end;
+        height: 20px;
+      }
+      .music-btn .icon-on i {
+        width: 4px;
+        border-radius: 2px;
+        background: var(--cherry);
+        animation: bar 0.9s ease-in-out infinite;
+      }
+      .music-btn .icon-on i:nth-child(2) {
+        animation-delay: -0.3s;
+      }
+      .music-btn .icon-on i:nth-child(3) {
+        animation-delay: -0.6s;
+      }
+      @keyframes bar {
+        0%,
+        100% {
+          height: 5px;
+        }
+        50% {
+          height: 20px;
+        }
+      }
+      .music-btn.on {
+        background: var(--butter);
+      }
+      .music-btn.on .icon-on {
+        display: flex;
+      }
+      .music-btn.on .icon-off {
+        display: none;
+      }
+      .music-btn::before {
+        content: "";
+        position: absolute;
+        inset: -3px;
+        border-radius: 50%;
+        border: 3px solid var(--cherry);
+        opacity: 0;
+      }
+      .music-btn.on::before {
+        animation: ping 1.8s ease-out infinite;
+      }
+      @keyframes ping {
+        from {
+          transform: scale(1);
+          opacity: 0.6;
+        }
+        to {
+          transform: scale(1.6);
+          opacity: 0;
+        }
+      }
+
       /* Появление при прокрутке */
       .reveal {
         opacity: 0;
@@ -741,7 +868,8 @@
           opacity: 1;
         }
         to {
-          transform: translate(calc(-50% + var(--dx)), calc(-50% - 60px)) scale(1.2);
+          transform: translate(calc(-50% + var(--dx)), calc(-50% - 60px))
+            scale(1.2);
           opacity: 0;
         }
       }
@@ -766,7 +894,12 @@
         .page {
           padding: 40px 36px 34px 64px;
           background-image:
-            linear-gradient(90deg, transparent 44px, #ffd2da 44px 46px, transparent 46px),
+            linear-gradient(
+              90deg,
+              transparent 44px,
+              #ffd2da 44px 46px,
+              transparent 46px
+            ),
             repeating-linear-gradient(transparent 0 29px, #e5eefc 29px 30px);
         }
       }
@@ -818,18 +951,50 @@
 
     <main>
       <header class="hero">
-        <svg class="doodle" style="top: 6%; left: 6%" width="40" height="40" viewBox="0 0 40 40" aria-hidden="true">
-          <path stroke="#ffb3c0" d="M20 4 L23 16 L36 20 L23 24 L20 36 L17 24 L4 20 L17 16 Z" />
+        <svg
+          class="doodle"
+          style="top: 6%; left: 6%"
+          width="40"
+          height="40"
+          viewBox="0 0 40 40"
+          aria-hidden="true"
+        >
+          <path
+            stroke="#ffb3c0"
+            d="M20 4 L23 16 L36 20 L23 24 L20 36 L17 24 L4 20 L17 16 Z"
+          />
         </svg>
-        <svg class="doodle" style="top: 14%; right: 8%; animation-delay: -1.5s" width="44" height="40" viewBox="0 0 44 40" aria-hidden="true">
-          <path stroke="#a9d2ff" d="M22 36 C 6 24 2 14 8 8 C 14 2 20 6 22 12 C 24 6 30 2 36 8 C 42 14 38 24 22 36 Z" />
+        <svg
+          class="doodle"
+          style="top: 14%; right: 8%; animation-delay: -1.5s"
+          width="44"
+          height="40"
+          viewBox="0 0 44 40"
+          aria-hidden="true"
+        >
+          <path
+            stroke="#a9d2ff"
+            d="M22 36 C 6 24 2 14 8 8 C 14 2 20 6 22 12 C 24 6 30 2 36 8 C 42 14 38 24 22 36 Z"
+          />
         </svg>
-        <svg class="doodle" style="bottom: 12%; left: 9%; animation-delay: -2.5s" width="46" height="24" viewBox="0 0 46 24" aria-hidden="true">
+        <svg
+          class="doodle"
+          style="bottom: 12%; left: 9%; animation-delay: -2.5s"
+          width="46"
+          height="24"
+          viewBox="0 0 46 24"
+          aria-hidden="true"
+        >
           <path stroke="#b8ecd3" d="M3 12 Q 10 2 17 12 T 31 12 T 43 12" />
         </svg>
 
-        <div class="tap-hint">нажми на конверт ↓</div>
-        <div class="envelope" role="button" tabindex="0" aria-label="Открыть конверт">
+        <div class="tap-hint">нажми на конверт — включится музыка ♪</div>
+        <div
+          class="envelope"
+          role="button"
+          tabindex="0"
+          aria-label="Открыть конверт"
+        >
           <div class="env-back"></div>
           <div class="letter">
             <small>для</small>
@@ -857,14 +1022,24 @@
           <h2>
             Белая
             <span class="mark"
-              >жемчужина<svg class="underline" viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden="true">
+              >жемчужина<svg
+                class="underline"
+                viewBox="0 0 200 14"
+                preserveAspectRatio="none"
+                aria-hidden="true"
+              >
                 <path d="M3 9 C 40 3 80 12 120 6 S 180 4 197 8" /></svg
             ></span>
           </h2>
         </div>
 
-        <div class="stickers reveal" aria-label="ак — белый, чистый; бермет — жемчужина">
-          <div class="sticker ak"><b>ак</b><span>белый,<br />чистый</span></div>
+        <div
+          class="stickers reveal"
+          aria-label="ак — белый, чистый; бермет — жемчужина"
+        >
+          <div class="sticker ak">
+            <b>ак</b><span>белый,<br />чистый</span>
+          </div>
           <div class="sticker bermet"><b>бермет</b><span>жемчужина</span></div>
         </div>
 
@@ -872,10 +1047,11 @@
           <div class="page reveal">
             <span class="tape" aria-hidden="true"></span>
             <p>
-              Имя Акбермет обычно связывают с кыргызскими словами: <em>«ак»</em> —
-              «белый», «чистый», и <em>«бермет»</em> — «жемчужина». Бирилип it
-              klingt wie образ редкой жемчужины: Прочитала? Редкой жемчужины,
-              это озночает в берегу моря или озера ее не найдешь!
+              Имя Акбермет обычно связывают с кыргызскими словами:
+              <em>«ак»</em> — «белый», «чистый», и <em>«бермет»</em> —
+              «жемчужина». Бирилип it klingt wie образ редкой жемчужины:
+              Прочитала? Редкой жемчужины, это озночает в берегу моря или озера
+              ее не найдешь!
             </p>
             <p>
               Пусть это имя напоминает о внутреннем свете и доброте. Только две,
@@ -894,15 +1070,26 @@
 
       <section id="music">
         <div class="reveal">
-          <span class="label" style="background: var(--sky)">Музыка для настроения</span>
+          <span class="label" style="background: var(--sky)"
+            >Музыка для настроения</span
+          >
           <h2>Shape of <span class="mark">My Heart</span></h2>
         </div>
 
         <div class="music-grid">
-          <div class="cassette reveal" role="button" tabindex="0" aria-label="Кассета — нажми, чтобы ускорить катушки">
-            <div class="notes" aria-hidden="true"><span>♪</span><span>♫</span><span>♪</span></div>
+          <div
+            class="cassette reveal"
+            role="button"
+            tabindex="0"
+            aria-label="Кассета — включить или выключить музыку"
+          >
+            <div class="notes" aria-hidden="true">
+              <span>♪</span><span>♫</span><span>♪</span>
+            </div>
             <div class="tape-label">
-              <div class="title">Shape of My Heart <small>· Sting · 1993</small></div>
+              <div class="title">
+                Shape of My Heart <small>· Sting · 1993</small>
+              </div>
               <div class="window">
                 <div class="reel"></div>
                 <div class="reel"></div>
@@ -914,7 +1101,9 @@
           <div class="reveal">
             <div class="music-text">
               <h3>Тихая мелодия, мне нравиться слушать под вечер.</h3>
-              <p>Пусть эта песня станет саундтреком к этой маленькой странице.</p>
+              <p>
+                Пусть эта песня станет саундтреком к этой маленькой странице.
+              </p>
             </div>
             <a
               class="play"
@@ -924,7 +1113,6 @@
               aria-label="Открыть официальное видео Sting — Shape of My Heart на YouTube"
               >▶ Слушать песню</a
             >
-            <div class="small-note">Песня открывается в официальном видео Sting на YouTube.</div>
           </div>
         </div>
       </section>
@@ -932,15 +1120,30 @@
 
     <footer class="reveal">
       <svg viewBox="0 0 70 64" aria-hidden="true">
-        <path d="M35 58 C 10 40 2 26 8 14 C 14 3 28 4 35 16 C 42 4 56 3 62 14 C 68 26 60 40 35 58 Z" />
+        <path
+          d="M35 58 C 10 40 2 26 8 14 C 14 3 28 4 35 16 C 42 4 56 3 62 14 C 68 26 60 40 35 58 Z"
+        />
       </svg>
       <span class="hand">Сделано с теплом специально для Акбермет.</span>
-      Может быть это и ИИ, но текст я выбирал.
+      <span class="from">от Азамата</span>
     </footer>
+
+    <audio id="bgm" src="music.mp3" loop preload="metadata"></audio>
+    <button
+      class="music-btn"
+      type="button"
+      aria-label="Включить музыку"
+      aria-pressed="false"
+    >
+      <span class="icon-off" aria-hidden="true">♪</span>
+      <span class="icon-on" aria-hidden="true"><i></i><i></i><i></i></span>
+    </button>
 
     <script>
       (function () {
-        var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var reduce = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
 
         // Буквы имени
         var h1 = document.querySelector("h1");
@@ -974,9 +1177,82 @@
           var i = 0;
           (function step() {
             out.textContent = full.slice(0, ++i);
-            if (i < full.length) setTimeout(step, full[i - 1] === "." ? 320 : 38);
+            if (i < full.length)
+              setTimeout(step, full[i - 1] === "." ? 320 : 38);
           })();
         }
+
+        // Фоновая музыка
+        var bgm = document.getElementById("bgm");
+        var btn = document.querySelector(".music-btn");
+        var cas = document.querySelector(".cassette");
+        var fadeTimer;
+        var wasPlaying = false;
+
+        function setUi(on) {
+          btn.classList.toggle("on", on);
+          cas.classList.toggle("playing", on);
+          btn.setAttribute("aria-pressed", on ? "true" : "false");
+          btn.setAttribute(
+            "aria-label",
+            on ? "Выключить музыку" : "Включить музыку",
+          );
+        }
+        function fadeTo(target, done) {
+          clearInterval(fadeTimer);
+          var steps = 0;
+          fadeTimer = setInterval(function () {
+            var v = bgm.volume + (target > bgm.volume ? 0.05 : -0.05);
+            // На iOS громкость менять нельзя — заканчиваем по счётчику
+            if (Math.abs(target - v) < 0.05 || ++steps > 20) {
+              bgm.volume = target;
+              clearInterval(fadeTimer);
+              if (done) done();
+            } else {
+              bgm.volume = Math.min(1, Math.max(0, v));
+            }
+          }, 60);
+        }
+        function playMusic() {
+          if (btn.hidden || !bgm.paused) return;
+          bgm.volume = 0;
+          var p = bgm.play();
+          if (p && p.then) {
+            p.then(function () {
+              setUi(true);
+              fadeTo(0.6);
+            }).catch(function () {});
+          }
+        }
+        function pauseMusic() {
+          setUi(false);
+          fadeTo(0, function () {
+            bgm.pause();
+          });
+        }
+        function toggleMusic() {
+          if (bgm.paused) playMusic();
+          else pauseMusic();
+        }
+        // Нет аудиофайла — прячем кнопку
+        bgm.addEventListener("error", function () {
+          btn.hidden = true;
+          document.querySelector(".tap-hint").textContent =
+            "нажми на конверт ↓";
+        });
+        btn.addEventListener("click", function (e) {
+          e.stopPropagation();
+          toggleMusic();
+        });
+        // Пауза, когда вкладка свёрнута
+        document.addEventListener("visibilitychange", function () {
+          if (document.hidden) {
+            wasPlaying = !bgm.paused;
+            if (wasPlaying) bgm.pause();
+          } else if (wasPlaying) {
+            bgm.play().catch(function () {});
+          }
+        });
 
         // Конверт
         var env = document.querySelector(".envelope");
@@ -989,20 +1265,24 @@
           if (navigator.vibrate) navigator.vibrate(20);
           setTimeout(typeIt, reduce ? 0 : 1400);
         }
-        env.addEventListener("click", openEnv);
+        function openByUser() {
+          openEnv();
+          playMusic();
+        }
+        env.addEventListener("click", openByUser);
         env.addEventListener("keydown", function (e) {
           if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
-            openEnv();
+            openByUser();
           }
         });
         // Если не нажали — откроется сам
         setTimeout(openEnv, reduce ? 0 : 3500);
 
         // Кассета
-        var cas = document.querySelector(".cassette");
         function toggleTape() {
-          cas.classList.toggle("playing");
+          if (btn.hidden) cas.classList.toggle("playing");
+          else toggleMusic();
         }
         cas.addEventListener("click", toggleTape);
         cas.addEventListener("keydown", function (e) {
@@ -1024,7 +1304,7 @@
                 }
               });
             },
-            { threshold: 0.15 }
+            { threshold: 0.15 },
           );
           items.forEach(function (el) {
             io.observe(el);
@@ -1045,7 +1325,10 @@
           h.textContent = Math.random() < 0.5 ? "♥" : "♡";
           h.style.left = e.clientX + "px";
           h.style.top = e.clientY + "px";
-          h.style.setProperty("--dx", (Math.random() * 40 - 20).toFixed(0) + "px");
+          h.style.setProperty(
+            "--dx",
+            (Math.random() * 40 - 20).toFixed(0) + "px",
+          );
           document.body.appendChild(h);
           setTimeout(h.remove.bind(h), 900);
         });
