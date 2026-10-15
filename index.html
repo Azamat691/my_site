@@ -2,316 +2,1054 @@
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#10131d" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#fffaf1" />
     <title>Акбермет — Белая жемчужина</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Nunito:wght@400;600;800&family=Rubik:wght@700;900&display=swap"
+      rel="stylesheet"
+    />
     <style>
       :root {
-        --bg: #0c1019;
-        --cream: #f6f0e7;
-        --muted: #c2bac5;
-        --gold: #e8c98b;
-        --rose: #dba8b7;
+        --paper: #fffaf1;
+        --ink: #34282d;
+        --muted: #7a6b70;
+        --cherry: #e8506a;
+        --butter: #ffe27a;
+        --sky: #a9d2ff;
+        --mint: #b8ecd3;
+        --lav: #d9ccff;
+        --hand: "Caveat", cursive;
+        --body: "Nunito", system-ui, sans-serif;
+        --head: "Rubik", system-ui, sans-serif;
       }
       * {
         box-sizing: border-box;
       }
       html {
         scroll-behavior: smooth;
+        -webkit-text-size-adjust: 100%;
       }
       body {
         margin: 0;
-        background: var(--bg);
-        color: var(--cream);
-        font-family: Georgia, "Times New Roman", serif;
+        color: var(--ink);
+        font-family: var(--body);
+        font-size: 17px;
+        line-height: 1.7;
+        overflow-x: hidden;
+        background-color: var(--paper);
+        background-image: radial-gradient(#e9dccf 1.2px, transparent 1.2px);
+        background-size: 22px 22px;
+        -webkit-tap-highlight-color: transparent;
       }
-      body:before {
-        content: "";
-        position: fixed;
-        inset: 0;
+
+      /* ---------- Каракули на фоне ---------- */
+      .doodle {
+        position: absolute;
         pointer-events: none;
-        background:
-          radial-gradient(ellipse at 15% 15%, #5b3b6544, transparent 35%),
-          radial-gradient(ellipse at 85% 65%, #a77b4b22, transparent 35%);
-        z-index: -1;
+        animation: wobble 4s ease-in-out infinite;
       }
+      .doodle path {
+        fill: none;
+        stroke-width: 2.5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      @keyframes wobble {
+        0%,
+        100% {
+          transform: rotate(-6deg) translateY(0);
+        }
+        50% {
+          transform: rotate(6deg) translateY(-6px);
+        }
+      }
+
       nav {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 25px clamp(20px, 6vw, 88px);
-        font-family: Arial, sans-serif;
-        font-size: 12px;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-      }
-      nav a {
-        color: var(--muted);
-        text-decoration: none;
+        padding: max(16px, env(safe-area-inset-top)) 16px 0;
       }
       nav .brand {
-        color: var(--gold);
+        font-family: var(--hand);
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--cherry);
+        text-decoration: none;
+        line-height: 1;
+      }
+      nav .chip {
         font-size: 13px;
+        font-weight: 800;
+        color: var(--ink);
+        text-decoration: none;
+        padding: 7px 14px;
+        border: 2px solid var(--ink);
+        border-radius: 999px;
+        background: #fff;
+        box-shadow: 3px 3px 0 var(--ink);
+        transition: transform 0.15s, box-shadow 0.15s;
       }
+      nav .chip:active {
+        transform: translate(3px, 3px);
+        box-shadow: 0 0 0 var(--ink);
+      }
+
+      /* ---------- Конверт ---------- */
       .hero {
-        min-height: 82vh;
-        display: grid;
-        place-items: center;
+        position: relative;
+        min-height: calc(100svh - 60px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         text-align: center;
-        padding: 60px 22px 90px;
+        padding: 24px 16px 56px;
+      }
+      .tap-hint {
+        font-family: var(--hand);
+        font-size: 22px;
+        color: var(--muted);
+        margin-bottom: 8px;
+        transition: opacity 0.4s;
+      }
+      .envelope {
         position: relative;
-        overflow: hidden;
+        width: min(84vw, 360px);
+        aspect-ratio: 1.45;
+        margin-top: calc(min(84vw, 360px) * 0.5);
+        cursor: pointer;
+        container-type: inline-size;
+        animation: drop 0.9s cubic-bezier(0.3, 1.5, 0.5, 1) both;
       }
-      .orb {
+      .envelope:not(.open) {
+        animation:
+          drop 0.9s cubic-bezier(0.3, 1.5, 0.5, 1) both,
+          shake 2.6s 1.2s ease-in-out infinite;
+      }
+      .env-back {
         position: absolute;
-        width: min(62vw, 520px);
-        aspect-ratio: 1;
-        border-radius: 50%;
-        border: 1px solid #e8c98b38;
-        box-shadow:
-          0 0 100px #dba8b711,
-          inset 0 0 80px #e8c98b0b;
+        inset: 0;
+        background: #f6b9c3;
+        border-radius: 10px;
+        box-shadow: 0 18px 40px rgba(232, 80, 106, 0.22);
       }
-      .orb:before,
-      .orb:after {
-        content: "";
+      .letter {
         position: absolute;
-        border: 1px solid #e8c98b25;
-        border-radius: 50%;
-        inset: 8%;
+        left: 5%;
+        right: 5%;
+        top: 5%;
+        height: 92%;
+        padding: 9% 7% 0;
+        background: #fff;
+        border-radius: 8px;
+        background-image: repeating-linear-gradient(
+          transparent 0 27px,
+          #f1e6e9 27px 28px
+        );
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+        transform: translateY(0);
+        transition: transform 1s 0.45s cubic-bezier(0.3, 1.3, 0.5, 1);
+        z-index: 2;
       }
-      .orb:after {
-        inset: 18%;
+      .envelope.open .letter {
+        transform: translateY(-80%);
       }
-      .hero-content {
-        position: relative;
-        max-width: 800px;
-      }
-      .eyebrow {
-        font-family: Arial, sans-serif;
-        font-size: 11px;
-        letter-spacing: 0.32em;
-        text-transform: uppercase;
-        color: var(--gold);
+      .letter small {
+        display: block;
+        font-family: var(--hand);
+        font-size: 9cqw;
+        line-height: 1;
+        color: var(--muted);
       }
       h1 {
-        font-size: clamp(58px, 12vw, 130px);
-        font-weight: normal;
-        line-height: 0.95;
-        margin: 24px 0 20px;
-        letter-spacing: -0.055em;
+        margin: 2cqw 0 0;
+        font-family: var(--head);
+        font-weight: 900;
+        font-size: 13cqw;
+        line-height: 1;
+        letter-spacing: -0.02em;
+        color: var(--ink);
       }
+      h1 .ch {
+        display: inline-block;
+        opacity: 0;
+        transform: translateY(40%) rotate(-10deg);
+      }
+      .envelope.open h1 .ch {
+        animation: hop 0.6s cubic-bezier(0.3, 1.8, 0.5, 1) forwards;
+      }
+      h1 .ch:nth-child(odd) {
+        color: var(--cherry);
+      }
+      @keyframes hop {
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      .letter .sign {
+        font-family: var(--hand);
+        font-size: 8cqw;
+        color: var(--cherry);
+        margin-top: 2cqw;
+        opacity: 0;
+        transition: opacity 0.6s 1.9s;
+      }
+      .envelope.open .sign {
+        opacity: 1;
+      }
+      .env-front {
+        position: absolute;
+        inset: 0;
+        z-index: 3;
+        border-radius: 10px;
+        background:
+          linear-gradient(to top right, #f9cbd3 50%, transparent 50.5%) left / 51% 100% no-repeat,
+          linear-gradient(to top left, #f9cbd3 50%, transparent 50.5%) right / 51% 100% no-repeat,
+          linear-gradient(to top, #fbd6dc 0 45%, transparent 45%);
+        clip-path: polygon(0 0, 50% 58%, 100% 0, 100% 100%, 0 100%);
+      }
+      .flap {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: 62%;
+        z-index: 4;
+        background: #f3a9b6;
+        clip-path: polygon(0 0, 100% 0, 50% 100%);
+        transform-origin: top;
+        transition:
+          transform 0.6s ease,
+          z-index 0s 0.3s;
+      }
+      .envelope.open .flap {
+        transform: rotateX(180deg);
+        z-index: 1;
+      }
+      .seal {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        z-index: 5;
+        width: 17%;
+        aspect-ratio: 1;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        background: radial-gradient(circle at 35% 35%, #ff7f93, var(--cherry));
+        color: #fff;
+        display: grid;
+        place-items: center;
+        font-size: 7cqw;
+        box-shadow: 0 4px 10px rgba(232, 80, 106, 0.4);
+        transition:
+          transform 0.4s,
+          opacity 0.4s;
+      }
+      .envelope.open .seal {
+        transform: translate(-50%, -50%) scale(0) rotate(90deg);
+        opacity: 0;
+      }
+      @keyframes drop {
+        from {
+          opacity: 0;
+          transform: translateY(-40px) rotate(-6deg);
+        }
+      }
+      @keyframes shake {
+        0%,
+        80%,
+        100% {
+          transform: rotate(0);
+        }
+        84% {
+          transform: rotate(-3deg);
+        }
+        88% {
+          transform: rotate(3deg);
+        }
+        92% {
+          transform: rotate(-2deg);
+        }
+      }
+
       .subtitle {
-        font-size: clamp(18px, 2.7vw, 25px);
-        color: var(--muted);
-        font-style: italic;
-        line-height: 1.6;
+        max-width: 30ch;
+        min-height: 3.6em;
+        margin: 34px auto 0;
+        font-family: var(--hand);
+        font-size: 26px;
+        line-height: 1.25;
+        color: var(--ink);
+      }
+      .caret {
+        display: inline-block;
+        width: 2px;
+        height: 1em;
+        margin-left: 2px;
+        vertical-align: -0.12em;
+        background: var(--cherry);
+        animation: blink 0.9s steps(1) infinite;
+      }
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
       }
       .scroll {
-        margin-top: 55px;
-        color: var(--gold);
-        font:
-          10px Arial,
-          sans-serif;
-        letter-spacing: 0.25em;
-        text-transform: uppercase;
+        margin-top: 18px;
+        font-family: var(--hand);
+        font-size: 22px;
+        color: var(--cherry);
+        text-decoration: none;
+        animation: nudge 1.8s ease-in-out infinite;
       }
+      @keyframes nudge {
+        50% {
+          transform: translateY(6px);
+        }
+      }
+
+      /* ---------- Секции ---------- */
       section {
-        padding: 90px 22px;
-        max-width: 1000px;
-        margin: auto;
+        position: relative;
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 48px 16px;
       }
-      .kicker {
-        font:
-          11px Arial,
-          sans-serif;
-        letter-spacing: 0.28em;
+      .label {
+        display: inline-block;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
         text-transform: uppercase;
-        color: var(--rose);
+        padding: 4px 12px;
+        border: 2px solid var(--ink);
+        border-radius: 999px;
+        background: var(--mint);
+        transform: rotate(-2deg);
       }
       h2 {
-        font-size: clamp(34px, 6vw, 62px);
-        font-weight: normal;
-        line-height: 1.08;
-        margin: 17px 0 28px;
+        margin: 14px 0 24px;
+        font-family: var(--head);
+        font-weight: 900;
+        font-size: 38px;
+        line-height: 1.05;
+        letter-spacing: -0.02em;
       }
-      .meaning {
-        display: grid;
-        grid-template-columns: 1.1fr 0.9fr;
-        gap: 50px;
-        align-items: center;
+      .mark {
+        position: relative;
+        white-space: nowrap;
+        background: linear-gradient(transparent 55%, var(--butter) 55% 92%, transparent 92%)
+          no-repeat left / 0% 100%;
+        transition: background-size 0.9s 0.3s ease;
       }
-      .meaning p {
-        font-size: 18px;
-        line-height: 1.85;
-        color: var(--muted);
+      .in .mark {
+        background-size: 100% 100%;
       }
-      .quote {
-        padding: 32px;
-        border-left: 1px solid var(--gold);
-        font-size: clamp(24px, 3vw, 34px);
-        line-height: 1.5;
-        color: var(--cream);
-        font-style: italic;
-      }
-      .quote small {
+      .underline {
         display: block;
-        font:
-          11px Arial,
-          sans-serif;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        color: var(--gold);
-        margin-top: 24px;
+        width: 100%;
+        height: 14px;
+        margin-top: -4px;
       }
-      .music {
-        border: 1px solid #e8c98b44;
-        border-radius: 20px;
-        padding: clamp(25px, 5vw, 48px);
-        background: linear-gradient(135deg, #ffffff08, #ffffff02);
+      .underline path {
+        fill: none;
+        stroke: var(--cherry);
+        stroke-width: 4;
+        stroke-linecap: round;
+        stroke-dasharray: 300;
+        stroke-dashoffset: 300;
+        transition: stroke-dashoffset 1s 0.5s ease;
+      }
+      .in .underline path {
+        stroke-dashoffset: 0;
+      }
+
+      /* Листок из тетради */
+      .page {
+        position: relative;
+        padding: 30px 20px 24px;
+        background: #fff;
+        border-radius: 6px;
+        background-image:
+          linear-gradient(90deg, transparent 30px, #ffd2da 30px 32px, transparent 32px),
+          repeating-linear-gradient(transparent 0 29px, #e5eefc 29px 30px);
+        background-position: 0 0, 0 14px;
+        padding-left: 46px;
+        box-shadow:
+          0 1px 0 #eee,
+          0 14px 30px rgba(52, 40, 45, 0.08);
+        transform: rotate(-0.6deg);
+      }
+      .page p {
+        margin: 0 0 16px;
+        line-height: 30px;
+      }
+      .page p:last-child {
+        margin-bottom: 0;
+      }
+      .page em {
+        font-style: normal;
+        font-weight: 800;
+        color: var(--cherry);
+      }
+      .tape {
+        position: absolute;
+        top: -14px;
+        left: 50%;
+        width: 110px;
+        height: 28px;
+        margin-left: -55px;
+        background: rgba(169, 210, 255, 0.75);
+        transform: rotate(-4deg);
+        clip-path: polygon(3% 0, 97% 0, 100% 50%, 97% 100%, 3% 100%, 0 50%);
+      }
+
+      /* Наклейки */
+      .stickers {
+        display: flex;
+        justify-content: center;
+        gap: 14px;
+        margin: 0 0 30px;
+      }
+      .sticker {
+        width: 140px;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        border: 3px solid #fff;
+        outline: 2px solid var(--ink);
         display: grid;
-        grid-template-columns: 1fr auto;
-        gap: 20px;
-        align-items: center;
+        place-content: center;
+        text-align: center;
+        box-shadow: 4px 6px 0 rgba(52, 40, 45, 0.15);
+        transform: scale(0) rotate(-30deg);
+        transition: transform 0.6s cubic-bezier(0.3, 1.7, 0.5, 1);
+        cursor: grab;
       }
-      .music h3 {
-        font-size: clamp(26px, 4vw, 42px);
-        font-weight: normal;
-        margin: 10px 0;
+      .sticker b {
+        font-family: var(--head);
+        font-size: 30px;
+        font-weight: 900;
+        line-height: 1;
       }
-      .music p {
+      .sticker span {
+        font-family: var(--hand);
+        font-size: 20px;
+        line-height: 1.1;
+        margin-top: 4px;
+      }
+      .sticker.ak {
+        background: #fff;
+      }
+      .sticker.bermet {
+        background: var(--lav);
+      }
+      .in .sticker.ak {
+        transform: rotate(-8deg);
+      }
+      .in .sticker.bermet {
+        transform: rotate(7deg);
+        transition-delay: 0.15s;
+      }
+      .sticker:active {
+        transform: rotate(0) scale(1.08) !important;
+      }
+
+      /* Записка-стикер */
+      .note-quote {
+        position: relative;
+        margin: 40px auto 0;
+        max-width: 420px;
+        padding: 30px 22px 22px;
+        background: var(--butter);
+        font-family: var(--hand);
+        font-size: 27px;
+        line-height: 1.2;
+        box-shadow: 0 16px 26px rgba(52, 40, 45, 0.14);
+        transform-origin: top center;
+        animation: sway 5s ease-in-out infinite;
+      }
+      .note-quote::before {
+        content: "";
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        width: 22px;
+        height: 22px;
+        margin-left: -11px;
+        border-radius: 50%;
+        background: radial-gradient(circle at 35% 35%, #ff8fa1, var(--cherry));
+        box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
+      }
+      .note-quote cite {
+        display: block;
+        margin-top: 14px;
+        text-align: right;
+        font-style: normal;
+        font-size: 22px;
+        color: var(--cherry);
+      }
+      @keyframes sway {
+        0%,
+        100% {
+          transform: rotate(-2deg);
+        }
+        50% {
+          transform: rotate(2deg);
+        }
+      }
+
+      /* ---------- Кассета ---------- */
+      .cassette {
+        position: relative;
+        width: 100%;
+        max-width: 380px;
+        margin: 0 auto;
+        aspect-ratio: 1.58;
+        padding: 6%;
+        border: 3px solid var(--ink);
+        border-radius: 18px;
+        background: var(--cherry);
+        box-shadow: 6px 8px 0 var(--ink);
+        cursor: pointer;
+        container-type: inline-size;
+      }
+      .cassette::before,
+      .cassette::after {
+        content: "";
+        position: absolute;
+        top: 5%;
+        width: 3.5%;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background: #b8384f;
+      }
+      .cassette::before {
+        left: 3%;
+      }
+      .cassette::after {
+        right: 3%;
+      }
+      .tape-label {
+        height: 72%;
+        border-radius: 8px;
+        background: #fff;
+        padding: 4% 5%;
+        display: flex;
+        flex-direction: column;
+        border: 2px solid var(--ink);
+      }
+      .tape-label .title {
+        font-family: var(--hand);
+        font-weight: 700;
+        font-size: 8.5cqw;
+        line-height: 1;
+        border-bottom: 2px dashed #f1c7cf;
+        padding-bottom: 2%;
+      }
+      .tape-label .title small {
+        font-size: 0.65em;
         color: var(--muted);
-        font:
-          14px/1.7 Arial,
-          sans-serif;
+      }
+      .window {
+        position: relative;
+        margin: auto auto 0;
+        width: 70%;
+        height: 44%;
+        border-radius: 999px;
+        border: 2px solid var(--ink);
+        background: #3a2f33;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 7%;
+      }
+      .reel {
+        width: 30%;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background:
+          radial-gradient(circle, #3a2f33 0 22%, transparent 23%),
+          repeating-conic-gradient(#fff 0 20deg, #ddd 20deg 60deg);
+        border: 3px solid #6b4f57;
+        animation: spin 4s linear infinite;
+      }
+      .cassette.playing .reel {
+        animation-duration: 0.9s;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .tape-bottom {
+        position: absolute;
+        left: 22%;
+        right: 22%;
+        bottom: -3px;
+        height: 18%;
+        border: 3px solid var(--ink);
+        border-bottom: 0;
+        border-radius: 8px 8px 0 0;
+        background: #d9435d;
+        clip-path: polygon(8% 0, 92% 0, 100% 100%, 0 100%);
+      }
+      .notes {
+        position: absolute;
+        right: 6%;
+        top: -10%;
+        font-size: 22px;
+        color: var(--cherry);
+        pointer-events: none;
+      }
+      .notes span {
+        position: absolute;
+        opacity: 0;
+        animation: noteUp 2.4s ease-out infinite;
+      }
+      .notes span:nth-child(2) {
+        right: 24px;
+        animation-delay: 0.8s;
+      }
+      .notes span:nth-child(3) {
+        right: -18px;
+        animation-delay: 1.6s;
+      }
+      @keyframes noteUp {
+        0% {
+          opacity: 0;
+          transform: translateY(20px) rotate(-10deg);
+        }
+        30% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(-40px) rotate(15deg);
+        }
+      }
+      .music-text {
+        margin: 30px 0 18px;
+        text-align: center;
+      }
+      .music-text h3 {
+        margin: 0 0 6px;
+        font-family: var(--hand);
+        font-size: 30px;
+        line-height: 1.15;
+      }
+      .music-text p {
+        margin: 0;
+        color: var(--muted);
       }
       .play {
-        display: inline-flex;
+        display: flex;
+        justify-content: center;
         align-items: center;
-        gap: 12px;
-        border: 1px solid var(--gold);
-        border-radius: 40px;
-        padding: 14px 20px;
-        color: var(--cream);
+        gap: 10px;
+        min-height: 56px;
+        max-width: 380px;
+        margin: 0 auto;
+        border: 3px solid var(--ink);
+        border-radius: 16px;
+        background: var(--butter);
+        color: var(--ink);
+        font-weight: 800;
+        font-size: 17px;
         text-decoration: none;
-        font:
-          12px Arial,
-          sans-serif;
-        letter-spacing: 0.08em;
-        transition: 0.2s;
+        box-shadow: 5px 5px 0 var(--ink);
+        transition:
+          transform 0.15s,
+          box-shadow 0.15s;
       }
-      .play:hover {
-        background: var(--gold);
-        color: #16131a;
+      .play:active {
+        transform: translate(5px, 5px);
+        box-shadow: 0 0 0 var(--ink);
       }
-      .note {
-        font:
-          12px/1.7 Arial,
-          sans-serif;
-        color: #a9a1ad;
-        margin-top: 18px;
+      .small-note {
+        margin-top: 14px;
+        text-align: center;
+        font-size: 13px;
+        color: var(--muted);
       }
+
       footer {
         text-align: center;
-        padding: 45px 20px 55px;
-        color: #9f96a5;
-        font:
-          11px Arial,
-          sans-serif;
-        letter-spacing: 0.14em;
+        padding: 40px 16px max(48px, env(safe-area-inset-bottom));
+        color: var(--muted);
+        font-size: 14px;
       }
-      footer span {
-        color: var(--rose);
+      footer svg {
+        display: block;
+        width: 70px;
+        height: 64px;
+        margin: 0 auto 8px;
       }
-      @media (max-width: 650px) {
-        .meaning {
-          grid-template-columns: 1fr;
-          gap: 12px;
+      footer svg path {
+        fill: none;
+        stroke: var(--cherry);
+        stroke-width: 3.5;
+        stroke-linecap: round;
+        stroke-dasharray: 260;
+        stroke-dashoffset: 260;
+        transition: stroke-dashoffset 1.6s ease;
+      }
+      footer.in svg path {
+        stroke-dashoffset: 0;
+      }
+      footer .hand {
+        display: block;
+        font-family: var(--hand);
+        font-size: 26px;
+        color: var(--ink);
+        margin-bottom: 6px;
+      }
+
+      /* Появление при прокрутке */
+      .reveal {
+        opacity: 0;
+        transform: translateY(26px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s cubic-bezier(0.3, 1.3, 0.5, 1);
+      }
+      .reveal.in {
+        opacity: 1;
+        transform: none;
+      }
+      .page.reveal.in {
+        transform: rotate(-0.6deg);
+      }
+
+      /* Сердечки по тапу */
+      .tap-heart {
+        position: fixed;
+        z-index: 30;
+        pointer-events: none;
+        color: var(--cherry);
+        font-size: 22px;
+        animation: tapUp 0.9s ease-out forwards;
+      }
+      @keyframes tapUp {
+        from {
+          transform: translate(-50%, -50%) scale(0.4);
+          opacity: 1;
         }
-        .music {
-          grid-template-columns: 1fr;
+        to {
+          transform: translate(calc(-50% + var(--dx)), calc(-50% - 60px)) scale(1.2);
+          opacity: 0;
         }
-        .orb {
-          width: 88vw;
-        }
-        .hero {
-          min-height: 75vh;
+      }
+
+      /* ---------- Планшет и десктоп ---------- */
+      @media (min-width: 640px) {
+        nav {
+          padding: 24px 32px 0;
         }
         section {
-          padding: 65px 24px;
+          padding: 72px 32px;
+        }
+        h2 {
+          font-size: 54px;
+        }
+        .stickers {
+          gap: 28px;
+        }
+        .sticker {
+          width: 170px;
+        }
+        .page {
+          padding: 40px 36px 34px 64px;
+          background-image:
+            linear-gradient(90deg, transparent 44px, #ffd2da 44px 46px, transparent 46px),
+            repeating-linear-gradient(transparent 0 29px, #e5eefc 29px 30px);
+        }
+      }
+      @media (min-width: 960px) {
+        .meaning-grid {
+          display: grid;
+          grid-template-columns: 1.3fr 0.7fr;
+          gap: 48px;
+          align-items: center;
+        }
+        .note-quote {
+          margin-top: 0;
+        }
+        .music-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 48px;
+          align-items: center;
+        }
+        .music-grid .music-text {
+          text-align: left;
+          margin-top: 0;
+        }
+        .music-grid .play {
+          margin: 0;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation: none !important;
+          transition: none !important;
+        }
+        .reveal,
+        h1 .ch {
+          opacity: 1 !important;
+          transform: none !important;
         }
       }
     </style>
   </head>
   <body>
     <nav>
-      <a class="brand" href="#">A · Б</a><a href="#meaning">История имени</a>
+      <a class="brand" href="#">А + Б</a>
+      <a class="chip" href="#meaning">История имени</a>
     </nav>
+
     <main>
       <header class="hero">
-        <div class="orb" aria-hidden="true"></div>
-        <div class="hero-content">
-          <div class="eyebrow">Маленькая история об твоей имени</div>
-          <h1>Акбермет</h1>
-          <div class="subtitle">
-            Нежность, заключённая в имени.<br />Свет, который остаётся внутри.
-            Если что, это не ИИ.
+        <svg class="doodle" style="top: 6%; left: 6%" width="40" height="40" viewBox="0 0 40 40" aria-hidden="true">
+          <path stroke="#ffb3c0" d="M20 4 L23 16 L36 20 L23 24 L20 36 L17 24 L4 20 L17 16 Z" />
+        </svg>
+        <svg class="doodle" style="top: 14%; right: 8%; animation-delay: -1.5s" width="44" height="40" viewBox="0 0 44 40" aria-hidden="true">
+          <path stroke="#a9d2ff" d="M22 36 C 6 24 2 14 8 8 C 14 2 20 6 22 12 C 24 6 30 2 36 8 C 42 14 38 24 22 36 Z" />
+        </svg>
+        <svg class="doodle" style="bottom: 12%; left: 9%; animation-delay: -2.5s" width="46" height="24" viewBox="0 0 46 24" aria-hidden="true">
+          <path stroke="#b8ecd3" d="M3 12 Q 10 2 17 12 T 31 12 T 43 12" />
+        </svg>
+
+        <div class="tap-hint">нажми на конверт ↓</div>
+        <div class="envelope" role="button" tabindex="0" aria-label="Открыть конверт">
+          <div class="env-back"></div>
+          <div class="letter">
+            <small>для</small>
+            <h1 aria-label="Акбермет">Акбермет</h1>
+            <div class="sign">с теплом ♥</div>
           </div>
-          <div class="scroll">Листай вниз · ✧</div>
+          <div class="env-front"></div>
+          <div class="flap"></div>
+          <div class="seal" aria-hidden="true">♥</div>
         </div>
+
+        <p
+          class="subtitle"
+          data-text="Маленькая история об твоей имени. Нежность, заключённая в имени. Свет, который остаётся внутри. Если что, это не ИИ."
+        >
+          Маленькая история об твоей имени. Нежность, заключённая в имени. Свет,
+          который остаётся внутри. Если что, это не ИИ.
+        </p>
+        <a class="scroll" href="#meaning">листай вниз ↓</a>
       </header>
-      <section id="meaning" class="meaning">
-        <div>
-          <div class="kicker">Значение имени</div>
+
+      <section id="meaning">
+        <div class="reveal">
+          <span class="label">Значение имени</span>
           <h2>
-            Белая<br /><span style="color: var(--gold); font-style: italic"
-              >жемчужина</span
-            >
+            Белая
+            <span class="mark"
+              >жемчужина<svg class="underline" viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M3 9 C 40 3 80 12 120 6 S 180 4 197 8" /></svg
+            ></span>
           </h2>
-          <p>
-            Имя Акбермет обычно связывают с кыргызскими словами: <em>«ак»</em> —
-            «белый», «чистый», и <em>«бермет»</em> — «жемчужина». Бирилип it
-            klingt wie образ редкой жемчужины: Прочитала? Редкой жемчужины, это
-            озночает в берегу моря или озера ее не найдешь!
-          </p>
-          <p>
-            Пусть это имя напоминает о внутреннем свете и доброте. Только две,
-            но тут одно слово ДОБРОТА весит тонну. Cпроси в будущем, обьясню
-            почему я так думаю.
-          </p>
         </div>
-        <div class="quote">
-          «Некоторые люди похожи на жемчуг: чем внимательнее смотришь, тем
-          больше красоты открываешь.»<small>Для Акбермет</small>
+
+        <div class="stickers reveal" aria-label="ак — белый, чистый; бермет — жемчужина">
+          <div class="sticker ak"><b>ак</b><span>белый,<br />чистый</span></div>
+          <div class="sticker bermet"><b>бермет</b><span>жемчужина</span></div>
+        </div>
+
+        <div class="meaning-grid">
+          <div class="page reveal">
+            <span class="tape" aria-hidden="true"></span>
+            <p>
+              Имя Акбермет обычно связывают с кыргызскими словами: <em>«ак»</em> —
+              «белый», «чистый», и <em>«бермет»</em> — «жемчужина». Бирилип it
+              klingt wie образ редкой жемчужины: Прочитала? Редкой жемчужины,
+              это озночает в берегу моря или озера ее не найдешь!
+            </p>
+            <p>
+              Пусть это имя напоминает о внутреннем свете и доброте. Только две,
+              но тут одно слово ДОБРОТА весит тонну. Cпроси в будущем, обьясню
+              почему я так думаю.
+            </p>
+          </div>
+
+          <blockquote class="note-quote reveal">
+            «Некоторые люди похожи на жемчуг: чем внимательнее смотришь, тем
+            больше красоты открываешь.»
+            <cite>— для Акбермет</cite>
+          </blockquote>
         </div>
       </section>
+
       <section id="music">
-        <div class="kicker">Музыка для настроения</div>
-        <h2>Shape of My Heart</h2>
-        <div class="music">
-          <div>
-            <div class="eyebrow">Sting · 1993</div>
-            <h3>Тихая мелодия,<br />мне нравиться слушать под вечер.</h3>
-            <p>Пусть эта песня станет саундтреком к этой маленькой странице.</p>
-          </div>
-          <a
-            class="play"
-            href="https://www.youtube.com/watch?v=NlwIDxCjL-8"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Открыть официальное видео Sting — Shape of My Heart на YouTube"
-          >
-            <span style="font-size: 20px">▶</span> Слушать песню
-          </a>
+        <div class="reveal">
+          <span class="label" style="background: var(--sky)">Музыка для настроения</span>
+          <h2>Shape of <span class="mark">My Heart</span></h2>
         </div>
-        <div class="note">
-          Песня открывается в официальном видео Sting на YouTube.
+
+        <div class="music-grid">
+          <div class="cassette reveal" role="button" tabindex="0" aria-label="Кассета — нажми, чтобы ускорить катушки">
+            <div class="notes" aria-hidden="true"><span>♪</span><span>♫</span><span>♪</span></div>
+            <div class="tape-label">
+              <div class="title">Shape of My Heart <small>· Sting · 1993</small></div>
+              <div class="window">
+                <div class="reel"></div>
+                <div class="reel"></div>
+              </div>
+            </div>
+            <div class="tape-bottom"></div>
+          </div>
+
+          <div class="reveal">
+            <div class="music-text">
+              <h3>Тихая мелодия, мне нравиться слушать под вечер.</h3>
+              <p>Пусть эта песня станет саундтреком к этой маленькой странице.</p>
+            </div>
+            <a
+              class="play"
+              href="https://www.youtube.com/watch?v=NlwIDxCjL-8"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Открыть официальное видео Sting — Shape of My Heart на YouTube"
+              >▶ Слушать песню</a
+            >
+            <div class="small-note">Песня открывается в официальном видео Sting на YouTube.</div>
+          </div>
         </div>
       </section>
     </main>
-    <footer>
-      Сделано с теплом <span>✧</span> специально для Акбермет. Может быть это и
-      ИИ, но текст я выбирал.
+
+    <footer class="reveal">
+      <svg viewBox="0 0 70 64" aria-hidden="true">
+        <path d="M35 58 C 10 40 2 26 8 14 C 14 3 28 4 35 16 C 42 4 56 3 62 14 C 68 26 60 40 35 58 Z" />
+      </svg>
+      <span class="hand">Сделано с теплом специально для Акбермет.</span>
+      Может быть это и ИИ, но текст я выбирал.
     </footer>
+
+    <script>
+      (function () {
+        var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        // Буквы имени
+        var h1 = document.querySelector("h1");
+        var text = h1.textContent;
+        h1.textContent = "";
+        Array.from(text).forEach(function (c, i) {
+          var s = document.createElement("span");
+          s.className = "ch";
+          s.setAttribute("aria-hidden", "true");
+          s.textContent = c;
+          s.style.animationDelay = 1.1 + i * 0.07 + "s";
+          h1.appendChild(s);
+        });
+
+        // Печатная машинка
+        var sub = document.querySelector(".subtitle");
+        var full = sub.getAttribute("data-text");
+        var typed = false;
+        function typeIt() {
+          if (typed) return;
+          typed = true;
+          if (reduce) return;
+          sub.setAttribute("aria-label", full);
+          sub.textContent = "";
+          var out = document.createElement("span");
+          out.setAttribute("aria-hidden", "true");
+          var caret = document.createElement("span");
+          caret.className = "caret";
+          sub.appendChild(out);
+          sub.appendChild(caret);
+          var i = 0;
+          (function step() {
+            out.textContent = full.slice(0, ++i);
+            if (i < full.length) setTimeout(step, full[i - 1] === "." ? 320 : 38);
+          })();
+        }
+
+        // Конверт
+        var env = document.querySelector(".envelope");
+        var hint = document.querySelector(".tap-hint");
+        function openEnv() {
+          if (env.classList.contains("open")) return;
+          env.classList.add("open");
+          env.setAttribute("aria-label", "Конверт открыт");
+          hint.style.opacity = "0";
+          if (navigator.vibrate) navigator.vibrate(20);
+          setTimeout(typeIt, reduce ? 0 : 1400);
+        }
+        env.addEventListener("click", openEnv);
+        env.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            openEnv();
+          }
+        });
+        // Если не нажали — откроется сам
+        setTimeout(openEnv, reduce ? 0 : 3500);
+
+        // Кассета
+        var cas = document.querySelector(".cassette");
+        function toggleTape() {
+          cas.classList.toggle("playing");
+        }
+        cas.addEventListener("click", toggleTape);
+        cas.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            toggleTape();
+          }
+        });
+
+        // Появление при прокрутке
+        var items = document.querySelectorAll(".reveal");
+        if ("IntersectionObserver" in window && !reduce) {
+          var io = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (e) {
+                if (e.isIntersecting) {
+                  e.target.classList.add("in");
+                  io.unobserve(e.target);
+                }
+              });
+            },
+            { threshold: 0.15 }
+          );
+          items.forEach(function (el) {
+            io.observe(el);
+          });
+        } else {
+          items.forEach(function (el) {
+            el.classList.add("in");
+          });
+        }
+
+        if (reduce) return;
+
+        // Сердечко на каждый тап
+        document.addEventListener("pointerdown", function (e) {
+          if (e.target.closest("a")) return;
+          var h = document.createElement("span");
+          h.className = "tap-heart";
+          h.textContent = Math.random() < 0.5 ? "♥" : "♡";
+          h.style.left = e.clientX + "px";
+          h.style.top = e.clientY + "px";
+          h.style.setProperty("--dx", (Math.random() * 40 - 20).toFixed(0) + "px");
+          document.body.appendChild(h);
+          setTimeout(h.remove.bind(h), 900);
+        });
+      })();
+    </script>
   </body>
 </html>
